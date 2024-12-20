@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tp.isilB.conference.entities.Auteur;
 import tp.isilB.conference.repositories.AuteurRepository;
+import lombok.*;
 
 @SpringBootApplication
 public class ConferenceApplication implements CommandLineRunner {
