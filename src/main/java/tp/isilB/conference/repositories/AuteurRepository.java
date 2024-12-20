@@ -9,5 +9,6 @@ public interface AuteurRepository extends CrudRepository<Auteur, Long> {
     Auteur findByNom(String nom);
     Auteur findByPrenom(String prenom);
     List<Auteur> findByInfos(String infos);
+    Auteur findByNomAndPrenom(String nom, String prenom);
 
 }
