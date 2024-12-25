@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import tp.isilB.conference.entities.Auteur;
-import tp.isilB.conference.entities.DetailsSoumission;
-import tp.isilB.conference.entities.Role;
-import tp.isilB.conference.entities.Soumission;
+import tp.isilB.conference.controller.UserAppController;
+import tp.isilB.conference.entities.*;
 import tp.isilB.conference.repositories.AuteurRepository;
 import lombok.*;
 import tp.isilB.conference.repositories.DetailsSoumissionRepository;
 import tp.isilB.conference.repositories.SoumissionRepository;
+import tp.isilB.conference.repositories.UserAppRepository;
+import tp.isilB.conference.services.UserAppService;
 
 
 import java.util.ArrayList;
@@ -30,6 +30,10 @@ public class ConferenceApplication implements CommandLineRunner {
 	private AuteurRepository auteurRepo;
 	@Autowired
 	private SoumissionRepository soumRepo;
+	@Autowired
+	private UserAppService userAppService;
+	@Autowired
+	private UserAppController userAppController = new UserAppController(userAppService);
 	@Autowired
 	private DetailsSoumissionRepository detailsSoumRepo;
 
@@ -58,6 +62,13 @@ public class ConferenceApplication implements CommandLineRunner {
 			System.out.println(auteur.toString());
 		}
 		System.out.println("Les infos du nom1: "+ auteurRepo.findByNomAndPrenom("Nom1", "Prenom1").getInfos());
+
+
+		UserApp userApp = new UserApp("name", "1234");
+		userAppController.createUser(userApp);
+
+
+
 	}
 
 }
