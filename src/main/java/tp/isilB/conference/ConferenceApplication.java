@@ -28,6 +28,8 @@ public class ConferenceApplication implements CommandLineRunner {
 	private DetailsSoumissionRepository detailsSoumRepo;
 	@Autowired
 	private EditeurRepository editeurRepo;
+    @Autowired
+    private conferenceRepository confRepo;
 	@Autowired
 	private UserAppService userAppService;
 	@Autowired
@@ -85,6 +87,7 @@ public class ConferenceApplication implements CommandLineRunner {
 		conference2.setEditeur(editeur2);
 		conference2.setSoumessions(Arrays.asList(soumission3));
 
+        confRepo.saveAll(Arrays.asList(conference1, conference2));
 		// Afficher les détails des auteurs, soumissions, éditeurs et conférences
 		for (Auteur auteur : auteurRepo.findAll()) {
 			System.out.println(auteur);
