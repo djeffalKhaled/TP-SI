@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Collection;
+
 @Entity
 @NoArgsConstructor
 @Getter @Setter
-@ToString(exclude = "auteur")
+@ToString(exclude = {"auteur", "editeur"})
 public class Soumission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +22,10 @@ public class Soumission {
     private Auteur auteur;
     @OneToOne(cascade = CascadeType.ALL) @Getter @Setter
     private DetailsSoumission detailsSoumission;
-
+    @ManyToMany
+    private Collection<Conference> conferences;
+    @ManyToOne
+    private Editeur editeur;
 
     public Soumission(String nom, String description, Auteur auteur) {
         this.nom = nom; this.description = description; this.auteur = auteur;

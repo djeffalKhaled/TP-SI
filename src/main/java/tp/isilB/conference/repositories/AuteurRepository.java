@@ -1,5 +1,4 @@
 package tp.isilB.conference.repositories;
-
 import org.springframework.data.repository.CrudRepository;
 import tp.isilB.conference.entities.Auteur;
 
@@ -10,5 +9,6 @@ public interface AuteurRepository extends CrudRepository<Auteur, Long> {
     Auteur findByPrenom(String prenom);
     List<Auteur> findByInfos(String infos);
     Auteur findByNomAndPrenom(String nom, String prenom);
+
 
 }
