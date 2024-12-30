@@ -2,6 +2,7 @@ package tp.isilB.conference.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tp.isilB.conference.repositories.RoleRepository;
 import tp.isilB.conference.repositories.UserAppRepository;
 import tp.isilB.conference.entities.UserApp;
 
@@ -22,6 +23,18 @@ public class UserAppService {
 
     public List<UserApp> findAllUserApp() {
         return (List<UserApp>)userAppRepository.findAll();
+    }
+
+    public boolean isEditeur(UserApp user) {
+        return user.getRoles().stream().anyMatch(role -> role.getNomRole().equals("Editeur"));
+    }
+
+    public boolean isEvaluateur(UserApp user) {
+        return user.getRoles().stream().anyMatch(role -> role.getNomRole().equals("Evaluateur"));
+    }
+
+    public boolean isAuteur(UserApp user) {
+        return user.getRoles().stream().anyMatch(role -> role.getNomRole().equals("Auteur"));
     }
 
 }

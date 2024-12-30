@@ -3,6 +3,6 @@ import org.springframework.data.repository.CrudRepository;
 import tp.isilB.conference.entities.Conference;
 
 
-public interface conferenceRepository extends CrudRepository<Conference, Long> {
+public interface ConferenceRepository extends CrudRepository<Conference, Long> {
 
 }

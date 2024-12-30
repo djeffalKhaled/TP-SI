@@ -22,13 +22,13 @@ public class Soumission {
     private Auteur auteur;
     @OneToOne(cascade = CascadeType.ALL) @Getter @Setter
     private DetailsSoumission detailsSoumission;
-    @ManyToMany
-    private Collection<Conference> conferences;
+    //@ManyToMany
+    //private Collection<Conference> conferences;
     @ManyToOne
     private Editeur editeur;
 
     public Soumission(String nom, String description, Auteur auteur) {
-        this.nom = nom; this.description = description; this.auteur = auteur;
+        this.nom = nom; this.description = description; this.auteur = auteur; this.editeur = editeur;
     }
 
 

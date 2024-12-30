@@ -6,6 +6,7 @@ import lombok.*;
 import java.util.Collection;
 
 @Entity
+@NoArgsConstructor
 @Getter @Setter
 @ToString(exclude = "conferences")
 public class Editeur {
@@ -18,4 +19,8 @@ public class Editeur {
     private String infos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "editeur")
     private Collection<Soumission> conferences;
+
+    public Editeur(String nom, String prenom, String infos) {
+        this.nom = nom; this.prenom = prenom; this.infos = infos;
+    }
 }

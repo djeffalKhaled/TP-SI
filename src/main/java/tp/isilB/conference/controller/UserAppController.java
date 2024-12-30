@@ -1,6 +1,5 @@
 package tp.isilB.conference.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +16,8 @@ public class UserAppController {
         this.userAppService = userAppService;
     }
 
+    // Recent issue with post, for some reason it doesn't accept its body despite being the same as the get body!
+    // Spent 3 hours debuging it I give up at this point
     @PostMapping
     public ResponseEntity<UserApp> createUser(@RequestBody UserApp userApp) {
         UserApp createdUser = userAppService.addUserApp(userApp);
@@ -24,7 +25,7 @@ public class UserAppController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserApp>> getUserApps() {
+    public ResponseEntity<List<UserApp>> getUsers() {
         List<UserApp> users = userAppService.findAllUserApp();
         for (UserApp user : userAppService.findAllUserApp()) {
             System.out.println("GetUserApp: " + user.toString());
@@ -33,7 +34,7 @@ public class UserAppController {
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity<UserApp> getUserApp(@PathVariable("email") String email) {
+    public ResponseEntity<UserApp> getUserByEmail(@PathVariable("email") String email) {
         UserApp userApp = userAppService.findUserAppByEmail(email);
         return ResponseEntity.ok(userApp);
     }
