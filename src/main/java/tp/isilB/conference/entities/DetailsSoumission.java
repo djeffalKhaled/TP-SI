@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Entity
 @NoArgsConstructor
 @Getter @Setter
@@ -24,4 +26,7 @@ public class DetailsSoumission {
         this.dateDeSoumission = dateDeSoumission; this.dateDeModification = dateDeModification;
     }
 
+    public void onUpdate() {
+        this.dateDeModification = LocalDateTime.now().toString();
+    }
 }

@@ -26,6 +26,10 @@ public class Soumission {
         this.nom = nom; this.description = description; this.auteur = auteur;
     }
 
-
-
+    public void setDetailsSoumission(DetailsSoumission details) {
+        this.detailsSoumission = details;
+        if (details != null) {
+            details.setSoumission(this);
+        }
+    }
 }

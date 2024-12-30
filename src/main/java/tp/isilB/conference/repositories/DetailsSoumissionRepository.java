@@ -7,4 +7,5 @@ public interface DetailsSoumissionRepository extends CrudRepository<DetailsSoumi
     public DetailsSoumission findById(int id);
     public DetailsSoumission findByDateDeSoumission(String dateDeSoumission);
     public DetailsSoumission findByDateDeModification(String dateDeModification);
+    public DetailsSoumission findAllDetailsSoumission();
 }
