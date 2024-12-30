@@ -7,13 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tp.isilB.conference.controller.UserAppController;
 import tp.isilB.conference.entities.*;
 import tp.isilB.conference.repositories.*;
-import lombok.*;
 import tp.isilB.conference.services.UserAppService;
 
 
 import java.util.*;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 
 @SpringBootApplication
 public class ConferenceApplication implements CommandLineRunner {

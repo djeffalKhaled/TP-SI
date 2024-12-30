@@ -24,10 +24,11 @@ public class UserApp {
     @ManyToMany(fetch = FetchType.EAGER)
     @Getter @Setter
     private Collection<Role> roles;
-
     public UserApp(String email, String password) {
-        this.email = email; this.password = password;
+        this.email = email;
+        this.password = password;
     }
+
 
 
 }

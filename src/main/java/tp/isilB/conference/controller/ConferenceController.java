@@ -4,12 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tp.isilB.conference.entities.Conference;
-import tp.isilB.conference.entities.Role;
 import tp.isilB.conference.entities.UserApp;
 import tp.isilB.conference.services.ConferenceService;
 import tp.isilB.conference.services.UserAppService;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController

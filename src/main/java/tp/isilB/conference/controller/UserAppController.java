@@ -18,11 +18,13 @@ public class UserAppController {
 
     // Recent issue with post, for some reason it doesn't accept its body despite being the same as the get body!
     // Spent 3 hours debuging it I give up at this point
+
     @PostMapping
     public ResponseEntity<UserApp> createUser(@RequestBody UserApp userApp) {
         UserApp createdUser = userAppService.addUserApp(userApp);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
+
 
     @GetMapping
     public ResponseEntity<List<UserApp>> getUsers() {
@@ -38,6 +40,8 @@ public class UserAppController {
         UserApp userApp = userAppService.findUserAppByEmail(email);
         return ResponseEntity.ok(userApp);
     }
+
+
 
 
 }

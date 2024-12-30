@@ -1,5 +1,4 @@
-/*
-package tp.isilB.conference.config;
+/*package tp.isilB.conference.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,13 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-/*
-This class is disabled for now
-
-
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  {
+public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -31,8 +27,6 @@ public class SecurityConfig  {
         return http.build();
     }
 
-    // In postman right click authorization and select Basic Auth
-    // Insert the following username and password
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails userDetails = User.withDefaultPasswordEncoder()
@@ -44,5 +38,4 @@ public class SecurityConfig  {
         return new InMemoryUserDetailsManager(userDetails);
     }
 }
-
 */
