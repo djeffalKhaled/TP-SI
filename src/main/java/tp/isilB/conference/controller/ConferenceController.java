@@ -20,7 +20,7 @@ public class ConferenceController {
     }
 
     @PostMapping // JUST FOR DEBUGGING
-    public ResponseEntity<Conference> createConferenceNoLogin(@RequestBody Conference conference) {
+    public ResponseEntity<Conference> createConference(@RequestBody Conference conference) {
         Conference newConference = conferenceService.addConference(conference);
         return ResponseEntity.status(HttpStatus.CREATED).body(newConference);
     }
@@ -31,15 +31,17 @@ public class ConferenceController {
     }
 
     @PostMapping("/{email}")
-    public ResponseEntity<UserApp> createConference(@PathVariable("email") String email, @RequestBody Conference conference) {
+    public ResponseEntity<Conference> editorCreateConference(@PathVariable("email") String email, @RequestBody Conference conference) {
         UserApp LoggedUser = userAppService.findUserAppByEmail(email);
         if (userAppService.isEditeur(LoggedUser)) {
             // Allow conference creation
-            System.out.println("Editeur vas crée un conference");
+            System.out.println("Editeur as crée une conference");
+            Conference newConference = conferenceService.addConference(conference);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newConference);
         } else {
             System.out.println("Cet utilisateur n’est pas un éditeur et n’a donc aucun privilège de création de conférence!");
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(LoggedUser);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
     @GetMapping("/{email}")
