@@ -2,6 +2,7 @@ package tp.isilB.conference.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import tp.isilB.conference.validators.RolesValid;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,13 +23,12 @@ public class UserApp {
     private String password; // TODO: find a way to encrypt this for security purposes
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @Getter @Setter
+    @RolesValid @Getter @Setter // Le premier rôle est le rôle principal
     private Collection<Role> roles;
+
     public UserApp(String email, String password) {
         this.email = email;
         this.password = password;
     }
-
-
 
 }

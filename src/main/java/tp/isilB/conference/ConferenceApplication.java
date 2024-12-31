@@ -38,6 +38,14 @@ public class ConferenceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		// Création des roles
+		Role auteurRole = new Role("Auteur");
+		Role editeurRole = new Role("Editeur");
+		Role evaluateurRole = new Role("Evaluateur");
+		roleRepo.save(auteurRole);
+		roleRepo.save(editeurRole);
+		roleRepo.save(evaluateurRole);
+
 		// Création des Auteurs
 		Auteur auteur1 = new Auteur("Nom1", "Prenom1", "Université des Sabotages Houari Boumedienne");
 		Auteur auteur2 = new Auteur("Nom2", "Prenom2", "Djelfa Superior University of Quantum Science");
@@ -76,16 +84,8 @@ public class ConferenceApplication implements CommandLineRunner {
 		}
 		System.out.println("Les infos du nom1: "+ auteurRepo.findByNomAndPrenom("Nom1", "Prenom1").getInfos());
 
-
-		Role auteurRole = new Role("Auteur");
-		Role editeurRole = new Role("Editeur");
-		Role evaluateurRole = new Role("Evaluateur");
-		roleRepo.save(auteurRole);
-		roleRepo.save(editeurRole);
-		roleRepo.save(evaluateurRole);
-
 		UserApp userApp = new UserApp("allroler", "password1233");
-		userApp.setRoles(Arrays.asList(auteurRole, editeurRole, evaluateurRole));
+		userApp.setRoles(Arrays.asList(editeurRole, auteurRole, evaluateurRole));
 		userAppController.createUser(userApp);
 
 
@@ -98,10 +98,8 @@ public class ConferenceApplication implements CommandLineRunner {
 		userAppController.createUser(userApp);
 
 		userApp = new UserApp("justEvaluateur", "13214");
-		userApp.setRoles(Arrays.asList(evaluateurRole));
+		userApp.setRoles(Arrays.asList(evaluateurRole, auteurRole));
 		userAppController.createUser(userApp);
-
-
 
 
 

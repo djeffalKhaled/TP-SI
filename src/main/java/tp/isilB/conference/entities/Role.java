@@ -20,8 +20,8 @@ public class Role {
     private int id;
     private String nomRole;
 
-    @ManyToMany
-    private Collection<Auteur> auteurs;
+    @OneToOne(mappedBy = "role")
+    private Auteur auteur;
 
     @ManyToMany
     private Collection<UserApp> userApp;

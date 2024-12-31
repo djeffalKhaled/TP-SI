@@ -27,10 +27,8 @@ public class Auteur {
     // Un Auteur soumettre DES soumissions
     private Collection<Soumission> soumissions;
 
-    // TODO: fix this ManyToMany, there is issues regarding initilisation in the main function, figure it out
-    @ManyToMany(fetch = FetchType.EAGER)
-    @Getter @Setter
-    private Collection<Role> roles;
+    @OneToOne(cascade = CascadeType.ALL) @Getter @Setter
+    private Role role;
 
     public Auteur(String nom, String prenom, String infos) {
         this.nom = nom; this.prenom = prenom; this.infos = infos;
