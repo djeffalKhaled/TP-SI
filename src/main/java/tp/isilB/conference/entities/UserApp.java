@@ -18,8 +18,9 @@ public class UserApp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(unique = true, nullable = false)
     private String password; // TODO: find a way to encrypt this for security purposes
 
     @ManyToMany(fetch = FetchType.EAGER)
