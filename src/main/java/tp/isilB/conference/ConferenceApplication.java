@@ -32,7 +32,7 @@ public class ConferenceApplication implements CommandLineRunner {
 	@Autowired
 	private UserAppService userAppService;
 	@Autowired
-	private UserAppController userAppController = new UserAppController(userAppService);
+	private UserAppController userAppController;
 	@Autowired
 	private DetailsSoumissionRepository detailsSoumRepo;
 
