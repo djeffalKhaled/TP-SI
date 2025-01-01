@@ -20,12 +20,12 @@ public class RolesCombainaisonValidateur implements ConstraintValidator<RolesVal
         System.out.println("API: Checking role validation: " + roles.toString());
 
         // The first role is assumed as the MAIN ROLE
-        if ((roles.toArray()[0].toString().contains("nomRole=Auteur"))) {
+        if ((roles.toArray()[0].toString().contains("nomRole=ROLE_AUTEUR"))) {
             return roles.size() == 1; // it MUST be a single role (auteur peut pas etre un evaluateur)
-        } else if ((roles.toArray()[0].toString().contains("nomRole=Editeur"))) {
+        } else if ((roles.toArray()[0].toString().contains("nomRole=ROLE_EDITEUR"))) {
             return true; // it can be ANY role (editeur peut etre auteur ou evaluateur)
-        } else if ((roles.toArray()[0].toString().contains("nomRole=Evaluateur"))) {
-            return (roles.toArray()[1].toString().contains("nomRole=Auteur") && roles.size() == 2) || roles.size() == 1; // it can be either a single role OR also an Auteur
+        } else if ((roles.toArray()[0].toString().contains("nomRole=ROLE_EVALUATEUR"))) {
+            return (roles.toArray()[1].toString().contains("nomRole=ROLE_AUTEUR") && roles.size() == 2) || roles.size() == 1; // it can be either a single role OR also an Auteur
         }
 
         return false;

@@ -10,17 +10,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/*
-* VALID ROLES:
-* AUTEUR
-* EDITEUR
-* EVALUATEUR
-* EVALUATEUR > AUTEUR
-* EDITEUR > EVALUATEUR > AUTEUR
-*
-* INVALID ROLES:
-*
-* */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy=RolesCombainaisonValidateur.class)

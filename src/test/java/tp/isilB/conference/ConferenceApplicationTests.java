@@ -24,14 +24,28 @@ class ConferenceApplicationTests {
 
 	@Test
 	public void test_createUserWithUnValidRole() throws Exception {
-		Role auteurRole = new Role("Auteur");
-		Role editeurRole = new Role("Editeur");
-		Role evaluateurRole = new Role("Evaluateur");
+		Role auteurRole = new Role("ROLE_AUTEUR");
+		Role editeurRole = new Role("ROLE_EDITEUR");
+		Role evaluateurRole = new Role("ROLE_EVALUATEUR");
 		roleRepo.save(auteurRole);
 		roleRepo.save(editeurRole);
 		roleRepo.save(evaluateurRole);
 
+		UserApp userApp = new UserApp("AuthorWithRolesEditeurEvaluateur", "hackthis");
+		userApp.setRoles(Arrays.asList(auteurRole, editeurRole, evaluateurRole));
+		userAppController.createUser(userApp);
+	}
 
+	@Test
+	public void test_createUserWithRoles() throws Exception {
+		Role auteurRole = new Role("ROLE_AUTEUR");
+		Role editeurRole = new Role("ROLE_EDITEUR");
+		Role evaluateurRole = new Role("ROLE_EVALUATEUR");
+		roleRepo.save(auteurRole);
+		roleRepo.save(editeurRole);
+		UserApp userApp = new UserApp("userRole", "uservalidrole");
+		userApp.setRoles(Arrays.asList(editeurRole, auteurRole, evaluateurRole));
+		userAppController.createUser(userApp);
 	}
 
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import tp.isilB.conference.controller.UserAppController;
 import tp.isilB.conference.entities.*;
 import tp.isilB.conference.repositories.*;
@@ -39,9 +40,9 @@ public class ConferenceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Création des roles
-		Role auteurRole = new Role("Auteur");
-		Role editeurRole = new Role("Editeur");
-		Role evaluateurRole = new Role("Evaluateur");
+		Role auteurRole = new Role("ROLE_AUTEUR");
+		Role editeurRole = new Role("ROLE_EDITEUR");
+		Role evaluateurRole = new Role("ROLE_EVALUATEUR");
 		roleRepo.save(auteurRole);
 		roleRepo.save(editeurRole);
 		roleRepo.save(evaluateurRole);
