@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -18,8 +20,11 @@ public class Role {
     private int id;
     private String nomRole;
 
+    @OneToOne(mappedBy = "role")
+    private Auteur auteur;
+
     @ManyToMany
-    private Collection<Auteur> auteurs;
+    private Collection<UserApp> userApp;
 
     public Role(String nomRole) {
         this.nomRole = nomRole;
