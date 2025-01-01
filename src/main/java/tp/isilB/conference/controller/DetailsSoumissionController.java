@@ -19,12 +19,6 @@ public class DetailsSoumissionController {
         this.detailsSoumissionService = detailsSoumissionService;
     }
 
-    @PostMapping
-    public ResponseEntity<DetailsSoumission> createDetailsSoumission(@RequestBody DetailsSoumission detailsSoumission) {
-        DetailsSoumission createdDetailsSoumission = detailsSoumissionService.addDetailsSoumission(detailsSoumission);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdDetailsSoumission);
-    }
-
     @GetMapping
     public ResponseEntity<List<DetailsSoumission>> getDetailsSoumission() {
         List<DetailsSoumission> detailsSoumissions = (List<DetailsSoumission>) detailsSoumissionService.findAllDetailsSoumission();
