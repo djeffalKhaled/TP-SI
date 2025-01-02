@@ -25,7 +25,7 @@ public class Conference {
 
     // Added a JsonIgnore due to issues with POST
     // Une conférence peut contenir plusieurs soumissions
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference") @JsonIgnore @JsonManagedReference @Getter @Setter
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference") @JsonManagedReference("conference-soumission") @Getter @Setter
     private Collection<Soumission> soumissions;
 
     public Conference(String titre, String theme, String etat, Date date_debut, Date date_fin, Editeur editeur) {

@@ -2,6 +2,7 @@ package tp.isilB.conference.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tp.isilB.conference.entities.Auteur;
 import tp.isilB.conference.entities.DetailsSoumission;
@@ -25,6 +26,8 @@ public class SoumissionController {
         this.soumissionService = soumissionAppService;
 
     }
+
+    @PreAuthorize("hasRole('AUTEUR')")
     @PostMapping
     public ResponseEntity<Soumission> createSoumission(@RequestBody Soumission soumission) {
         Soumission createdSoumission = soumissionService.addSoumission(soumission);
@@ -47,24 +50,15 @@ public class SoumissionController {
         Soumission soumission = soumissionService.findByNom(nom);
         return ResponseEntity.ok(soumission);
     }
-    @GetMapping("/auteur")
-    public ResponseEntity<Soumission> getSoumissionByAuteur(@PathVariable("auteur") Auteur auteur) {
-        Soumission soumission = soumissionService.findByAuteur(auteur);
-        return ResponseEntity.ok(soumission);
-    }
 
+    @PreAuthorize("hasRole('AUTEUR')")
     @DeleteMapping("/{nom}")
     public ResponseEntity<Soumission> deleteSoumissionByNom(@PathVariable("nom") String nom) {
         Soumission soumission = soumissionService.findByNom(nom);
         return ResponseEntity.ok(soumission);
     }
 
-    @DeleteMapping("/auteur")
-    public ResponseEntity<Soumission> deleteSoumissionByAuteur(@PathVariable("auteur") Auteur auteur) {
-        Soumission soumission = soumissionService.findByAuteur(auteur);
-        return ResponseEntity.ok(soumission);
-    }
-
+    @PreAuthorize("hasRole('AUTEUR')")
     @PutMapping("/{nom}")
     public ResponseEntity<Soumission> editSoumissionByNom(@PathVariable("nom") String nom, @RequestBody Soumission soumission) {
         Soumission updateSoumission = soumissionService.findByNom(nom);

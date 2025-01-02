@@ -23,7 +23,7 @@ public class Auteur {
     @Column(name = "infos", nullable = false, length = 256)
     private String infos;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auteur") @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auteur") @JsonManagedReference("soumission-auteur")
     // Un Auteur soumettre DES soumissions
     private Collection<Soumission> soumissions;
 

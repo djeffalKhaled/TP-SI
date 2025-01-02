@@ -23,9 +23,13 @@ public class ConferenceApplication implements CommandLineRunner {
 	@Autowired
 	private AuteurRepository auteurRepo;
 	@Autowired
+	private EditeurRepository editeurRepo;
+	@Autowired
+	private EvaluateurRepository evaluateurRepo;
+	@Autowired
 	private SoumissionRepository soumRepo;
 	@Autowired
-	private EditeurRepository editeurRepo;
+	private EvaluationRepository evaluationRepo;
 	@Autowired
 	private RoleRepository roleRepo;
 	@Autowired
@@ -81,6 +85,23 @@ public class ConferenceApplication implements CommandLineRunner {
 			System.out.println(auteur.toString());
 		}
 		System.out.println("Les infos du nom1: "+ auteurRepo.findByNomAndPrenom("Nom1", "Prenom1").getInfos());
+
+		// Creation des Evaluateur
+		Evaluateur evaluateur1 = new Evaluateur("Dupont", "Jean", "Expert en Sciences");
+		Evaluateur evaluateur2 = new Evaluateur("Martin", "Pierre", "Expert en Mathématiques");
+
+		evaluateurRepo.saveAll(Arrays.asList(evaluateur1, evaluateur2));
+
+
+		// Creation des Evaluations
+		Evaluation evaluation1 = new Evaluation(5, "Très bonne soumission", "ACCEPTEE", soumission1, evaluateur1);
+		Evaluation evaluation2 = new Evaluation(3, "Soumission à améliorer", "EN ATTENTE", soumission2, evaluateur2);
+		Evaluation evaluation3 = new Evaluation(1, "Soumission Stupide!!", "REJECTER", soumission3, evaluateur1);
+
+		evaluationRepo.saveAll(Arrays.asList(evaluation1, evaluation2, evaluation3));
+
+
+		// Creation des utilisateurs
 
 		UserApp userApp = new UserApp("allroler", "password1233");
 		userApp.setRoles(Arrays.asList(editeurRole, auteurRole, evaluateurRole));

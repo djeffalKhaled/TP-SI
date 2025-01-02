@@ -23,17 +23,14 @@ public class Soumission {
     private int id;
     private String nom;
     private String description;
-    @ManyToOne @JsonBackReference
+    @ManyToOne @JsonBackReference("soumission-auteur")
     private Auteur auteur;
     @OneToOne(cascade = CascadeType.ALL) @Getter @Setter
     private DetailsSoumission detailsSoumission;
-    @ManyToOne @JsonBackReference // Les soumissions sont liées à une conférence
+    @ManyToOne @JsonBackReference("conference-soumission") // Les soumissions sont liées à une conférence
     private Conference conference;
-    @ManyToOne
-    private Editeur editeur;
-
     public Soumission(String nom, String description, Auteur auteur, Conference conference) {
-        this.nom = nom; this.description = description; this.auteur = auteur; this.editeur = editeur; this.conference = conference;
+        this.nom = nom; this.description = description; this.auteur = auteur; this.conference = conference;
     }
 
     public void setDetailsSoumission(DetailsSoumission details) {

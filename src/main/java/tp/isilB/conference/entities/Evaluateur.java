@@ -1,15 +1,26 @@
 package tp.isilB.conference.entities;
-
 import jakarta.persistence.*;
-import lombok.*;
+import java.util.List;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 @Entity
-@Getter @Setter
+@NoArgsConstructor
+@Getter
+@Setter
 public class Evaluateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nom;
     private String prenom;
-
-
+    @Column(name ="infos" , nullable = false ,length = 256)
+    private String infos;
+    @OneToMany(mappedBy = "evaluateur", cascade = CascadeType.ALL)
+    private List<Evaluation> evaluations;
+    public Evaluateur(String nom, String prenom, String infos) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.infos = infos;
+    }
 }

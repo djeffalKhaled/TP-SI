@@ -19,7 +19,7 @@ public class Editeur {
     @Column(name = "infos", nullable = false, length = 256)
     private String infos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "editeur")
-    private Collection<Soumission> conferences;
+    private Collection<Conference> conferences;
 
     public Editeur(String nom, String prenom, String infos) {
         this.nom = nom; this.prenom = prenom; this.infos = infos;
