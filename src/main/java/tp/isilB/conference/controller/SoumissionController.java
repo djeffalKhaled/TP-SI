@@ -20,11 +20,9 @@ import java.util.List;
 @RequestMapping("api/v1/soumission")
 public class SoumissionController {
     private final SoumissionService soumissionService;
-    private final SoumissionRepository soumissionRepository;
 
-    public SoumissionController(SoumissionService soumissionAppService, SoumissionRepository soumissionRepository, DetailsSoumissionRepository detailsSoumissionRepository) {
+    public SoumissionController(SoumissionService soumissionAppService) {
         this.soumissionService = soumissionAppService;
-        this.soumissionRepository = soumissionRepository;
 
     }
     @PostMapping
@@ -69,7 +67,7 @@ public class SoumissionController {
 
     @PutMapping("/{nom}")
     public ResponseEntity<Soumission> editSoumissionByNom(@PathVariable("nom") String nom, @RequestBody Soumission soumission) {
-        Soumission updateSoumission = soumissionRepository.findByNom(nom);
+        Soumission updateSoumission = soumissionService.findByNom(nom);
         DetailsSoumission updateDetailsSoumission = new DetailsSoumission();
         updateSoumission.setNom(soumission.getNom());
         updateSoumission.setAuteur(updateSoumission.getAuteur());

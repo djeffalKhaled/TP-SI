@@ -30,8 +30,18 @@ class ConferenceApplicationTests {
 		roleRepo.save(auteurRole);
 		roleRepo.save(editeurRole);
 		roleRepo.save(evaluateurRole);
+	}
 
-
+	@Test
+	public void test_createUserWithRoles() throws Exception {
+		Role auteurRole = new Role("ROLE_AUTEUR");
+		Role editeurRole = new Role("ROLE_EDITEUR");
+		Role evaluateurRole = new Role("ROLE_EVALUATEUR");
+		roleRepo.save(auteurRole);
+		roleRepo.save(editeurRole);
+		UserApp userApp = new UserApp("userRole", "uservalidrole");
+		userApp.setRoles(Arrays.asList(editeurRole, auteurRole, evaluateurRole));
+		userAppController.createUser(userApp);
 	}
 
 }

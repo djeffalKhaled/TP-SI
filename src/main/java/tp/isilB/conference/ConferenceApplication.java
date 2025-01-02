@@ -43,22 +43,19 @@ public class ConferenceApplication implements CommandLineRunner {
 		Role auteurRole = new Role("ROLE_AUTEUR");
 		Role editeurRole = new Role("ROLE_EDITEUR");
 		Role evaluateurRole = new Role("ROLE_EVALUATEUR");
-		roleRepo.save(auteurRole);
-		roleRepo.save(editeurRole);
-		roleRepo.save(evaluateurRole);
+		Role adminRole = new Role("ROLE_ADMIN");
+		roleRepo.saveAll(Arrays.asList(auteurRole, editeurRole, evaluateurRole, adminRole));
 
 		// Création des Auteurs
 		Auteur auteur1 = new Auteur("Nom1", "Prenom1", "Université des Sabotages Houari Boumedienne");
 		Auteur auteur2 = new Auteur("Nom2", "Prenom2", "Djelfa Superior University of Quantum Science");
 		Auteur auteur3 = new Auteur("Nom3", "Prenom3", "Ecole Superieur de Springboot");
-
 		auteurRepo.saveAll(Arrays.asList(auteur1, auteur2, auteur3));
 
 		// Création des éditeurs
 		Editeur editeur1 = new Editeur("Editeur1", "Prenom1", "Spécialiste en conférences scientifiques");
 		Editeur editeur2 = new Editeur("Editeur2", "Prenom2", "Expert en Physique Quantique");
 		Editeur editeur3 = new Editeur("Achrouf", "Islam", "Expert en Informatique Quantique");
-
 		editeurRepo.saveAll(Arrays.asList(editeur1, editeur2, editeur3));
 
 		// Création des conférences
@@ -100,6 +97,10 @@ public class ConferenceApplication implements CommandLineRunner {
 
 		userApp = new UserApp("justEvaluateur", "13214");
 		userApp.setRoles(Arrays.asList(evaluateurRole, auteurRole));
+		userAppController.createUser(userApp);
+
+		userApp = new UserApp("admin", "admin");
+		userApp.setRoles(Arrays.asList(adminRole));
 		userAppController.createUser(userApp);
 
 

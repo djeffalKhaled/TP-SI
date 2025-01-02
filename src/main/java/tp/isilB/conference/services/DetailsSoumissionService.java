@@ -30,6 +30,6 @@ public class DetailsSoumissionService {
     }
 
     public List<DetailsSoumission> findAllDetailsSoumission() {
-        return (List<DetailsSoumission>) detailsSoumissionRepository.findAllDetailsSoumission();
+        return (List<DetailsSoumission>)detailsSoumissionRepository.findAll();
     }
 }

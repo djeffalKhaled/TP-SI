@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tp.isilB.conference.entities.UserApp;
@@ -30,7 +31,7 @@ public class UserAppController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')") // Only admin has get rights for users
     @GetMapping
     public ResponseEntity<List<UserApp>> getUsers() {
         List<UserApp> users = userAppService.findAllUserApp();
@@ -40,6 +41,7 @@ public class UserAppController {
         return ResponseEntity.ok(users);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{email}")
     public ResponseEntity<UserApp> getUserByEmail(@PathVariable("email") String email) {
         UserApp userApp = userAppService.findUserAppByEmail(email);

@@ -27,8 +27,8 @@ public class SoumissionService {
         return soumissionRepository.findByNom(nom);
     }
 
-    public Soumission findAllSoumissions(){
-        return (Soumission) soumissionRepository.findAllSoumissions();
+    public List<Soumission> findAllSoumissions(){
+        return (List<Soumission>) soumissionRepository.findAll();
     }
 }
 

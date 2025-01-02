@@ -20,7 +20,7 @@ public class Role {
     private int id;
     private String nomRole;
 
-    @OneToOne(mappedBy = "role")
+    @OneToOne(mappedBy = "role") // A user tied to Role can only have one Auteur/Editeur/... entity
     private Auteur auteur;
 
     @ManyToMany

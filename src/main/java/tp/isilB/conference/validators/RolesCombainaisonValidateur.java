@@ -16,6 +16,8 @@ public class RolesCombainaisonValidateur implements ConstraintValidator<RolesVal
     public boolean isValid(Collection<Role> roles, ConstraintValidatorContext context) {
         if (roles == null || roles.isEmpty()) {
             return false;
+        } else if (roles.toArray()[0].toString().contains("ROLE_ADMIN")) {
+            return true;
         }
         System.out.println("API: Checking role validation: " + roles.toString());
 
