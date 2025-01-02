@@ -23,8 +23,8 @@ public class SoumissionService {
         return (Soumission) soumissionRepository.findByAuteur(auteur);
     }
 
-    public Soumission findByNom (String nom){
-        return soumissionRepository.findByNom(nom);
+    public Soumission findByTitre (String titre){
+        return soumissionRepository.findByTitre(titre);
     }
 
     public List<Soumission> findAllSoumissions(){

@@ -1,4 +1,6 @@
 package tp.isilB.conference.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 import lombok.Getter;
@@ -16,7 +18,7 @@ public class Evaluateur {
     private String prenom;
     @Column(name ="infos" , nullable = false ,length = 256)
     private String infos;
-    @OneToMany(mappedBy = "evaluateur", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "evaluateur", cascade = CascadeType.ALL)  @JsonManagedReference("evaluateur-evaluation")
     private List<Evaluation> evaluations;
     public Evaluateur(String nom, String prenom, String infos) {
         this.nom = nom;

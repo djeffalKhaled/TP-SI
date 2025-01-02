@@ -70,9 +70,9 @@ public class ConferenceApplication implements CommandLineRunner {
 		confRepo.saveAll(Arrays.asList(conference1, conference2));
 
 		// Création des Soumissions
-		Soumission soumission1 = new Soumission("soumission1", "Science", auteur1, conference1);
-		Soumission soumission2 = new Soumission("soumission1", "Math", auteur1, conference2);
-		Soumission soumission3 = new Soumission("soumission1", "Physique", auteur2, conference2);
+		Soumission soumission1 = new Soumission("The Art of War", "Made By sun tzu", "PDF1", auteur1, conference1);
+		Soumission soumission2 = new Soumission("Etude sur Mathématiques", "Etude de PHD sur des chose math", "PDF2", auteur1, conference2);
+		Soumission soumission3 = new Soumission("Science de Springboot", "La vaste science de Springboot","PDF3", auteur2, conference2);
 		conference1.setSoumissions(Arrays.asList(soumission1));
 		conference2.setSoumissions(Arrays.asList(soumission2, soumission3));
 

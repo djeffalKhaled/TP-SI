@@ -6,10 +6,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import tp.isilB.conference.entities.Conference;
+import tp.isilB.conference.entities.Editeur;
 import tp.isilB.conference.entities.UserApp;
 import tp.isilB.conference.services.ConferenceService;
 import tp.isilB.conference.services.UserAppService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,6 +32,16 @@ public class ConferenceController {
     public ResponseEntity<List<Conference>> getConferences() {
         List<Conference> conferences = conferenceService.findAllConferences();
         return ResponseEntity.ok(conferences);
+    }
+
+    @GetMapping("/editeur")
+    public ResponseEntity<List<Editeur>> getEditeurConferences() {
+        List<Conference> conferences = conferenceService.findAllConferences();
+        List<Editeur> editeurs = new ArrayList<Editeur>();
+        for (Conference conference : conferences) {
+            editeurs.add(conference.getEditeur());
+        }
+        return ResponseEntity.ok(editeurs);
     }
 
 }
