@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,6 +28,7 @@ import static org.springframework.web.servlet.function.RequestPredicates.headers
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Autowired
@@ -43,7 +45,7 @@ public class SecurityConfig {
                         headers.frameOptions(withDefaults()).disable()
                 )
                 .csrf((csrf) -> csrf
-                        .ignoringRequestMatchers("/no-csrf")
+                        .ignoringRequestMatchers("api/v1/**", "/h2-console/**")
                 )
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults());

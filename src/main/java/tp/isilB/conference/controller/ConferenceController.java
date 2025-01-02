@@ -2,6 +2,8 @@ package tp.isilB.conference.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import tp.isilB.conference.entities.Conference;
 import tp.isilB.conference.entities.UserApp;
@@ -18,7 +20,7 @@ public class ConferenceController {
     public ConferenceController(UserAppService userAppService, ConferenceService conferenceService) {
         this.userAppService = userAppService; this.conferenceService = conferenceService;
     }
-
+    @PreAuthorize("hasRole('EDITEUR')") // Juste les editeur peut crée les conferences
     @PostMapping // JUST FOR DEBUGGING
     public ResponseEntity<Conference> createConference(@RequestBody Conference conference) {
         Conference newConference = conferenceService.addConference(conference);
@@ -30,23 +32,4 @@ public class ConferenceController {
         return ResponseEntity.ok(conferences);
     }
 
-    @PostMapping("/{email}")
-    public ResponseEntity<Conference> editorCreateConference(@PathVariable("email") String email, @RequestBody Conference conference) {
-        UserApp LoggedUser = userAppService.findUserAppByEmail(email);
-        if (userAppService.isEditeur(LoggedUser)) {
-            // Allow conference creation
-            System.out.println("Editeur as crée une conference");
-            Conference newConference = conferenceService.addConference(conference);
-            return ResponseEntity.status(HttpStatus.CREATED).body(newConference);
-        } else {
-            System.out.println("Cet utilisateur n’est pas un éditeur et n’a donc aucun privilège de création de conférence!");
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
-
-    @GetMapping("/{email}")
-    public ResponseEntity<UserApp> getUserByEmail(@PathVariable("email") String email) {
-        UserApp userApp = userAppService.findUserAppByEmail(email);
-        return ResponseEntity.ok(userApp);
-    }
 }
