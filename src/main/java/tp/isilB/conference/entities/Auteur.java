@@ -27,8 +27,8 @@ public class Auteur {
     // Un Auteur soumettre DES soumissions
     private Collection<Soumission> soumissions;
 
-    @OneToOne(cascade = CascadeType.ALL) @Getter @Setter
-    private Role role;
+    @OneToOne(mappedBy = "auteur") @JsonBackReference("user-auteur")
+    private UserApp user;
 
     public Auteur(String nom, String prenom, String infos) {
         this.nom = nom; this.prenom = prenom; this.infos = infos;

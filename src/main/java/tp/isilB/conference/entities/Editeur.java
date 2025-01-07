@@ -1,4 +1,6 @@
 package tp.isilB.conference.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import lombok.*;
@@ -18,8 +20,10 @@ public class Editeur {
     private String prenom;
     @Column(name = "infos", nullable = false, length = 256)
     private String infos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "editeur")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "editeur") @JsonIgnore
     private Collection<Conference> conferences;
+    @OneToOne(mappedBy = "editeur") @JsonBackReference("user-editeur")
+    private UserApp user;
 
     public Editeur(String nom, String prenom, String infos) {
         this.nom = nom; this.prenom = prenom; this.infos = infos;

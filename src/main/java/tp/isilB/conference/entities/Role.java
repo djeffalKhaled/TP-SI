@@ -1,5 +1,6 @@
 package tp.isilB.conference.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,17 +14,14 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Getter @Setter
-@ToString(exclude = "auteurs")
+@ToString()
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nomRole;
 
-    @OneToOne(mappedBy = "role") // A user tied to Role can only have one Auteur/Editeur/... entity
-    private Auteur auteur;
-
-    @ManyToMany
+    @ManyToMany @JsonBackReference("user-role")
     private Collection<UserApp> userApp;
 
     public Role(String nomRole) {

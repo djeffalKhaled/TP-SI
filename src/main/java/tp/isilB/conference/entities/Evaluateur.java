@@ -20,6 +20,8 @@ public class Evaluateur {
     private String infos;
     @OneToMany(mappedBy = "evaluateur", cascade = CascadeType.ALL)  @JsonManagedReference("evaluateur-evaluation")
     private List<Evaluation> evaluations;
+    @OneToOne(mappedBy = "evaluateur") @JsonBackReference("user-evaluateur")
+    private UserApp user;
     public Evaluateur(String nom, String prenom, String infos) {
         this.nom = nom;
         this.prenom = prenom;

@@ -1,5 +1,6 @@
 package tp.isilB.conference.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"auteur", "editeur", "evaluateur"})
 @Getter @Setter
 public class UserApp implements UserDetails {
     @Id
@@ -28,8 +29,15 @@ public class UserApp implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @RolesValid @Getter @Setter // Le premier rôle est le rôle principal
+    @RolesValid @Getter @Setter @JsonManagedReference("user-role")// Le premier rôle est le rôle principal
     private Collection<Role> roles;
+
+    @OneToOne @JsonManagedReference("user-auteur")
+    private Auteur auteur;
+    @OneToOne @JsonManagedReference("user-editeur")
+    private Editeur editeur;
+    @OneToOne @JsonManagedReference("user-evaluateur")
+    private Evaluateur evaluateur;
 
     public UserApp(String email, String password) {
         this.email = email;
